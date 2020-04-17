@@ -1,0 +1,77 @@
+/* police de caractères pour le titre */
+@font-face {
+  font-family: 'Belligerent';
+  src: url('../fonts/belligerent.ttf');
+}
+
+/* mise en forme du corps de la page */
+body {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  background-color: #F3E9F1;
+}
+
+/* barre de navigation */
+.navbar {
+  font-size: 22px;
+}
+
+/* logo de l'entête */
+.logo {
+  width: 20%;
+}
+
+/* titre dans l'entête */
+h1 {
+  font-family: "Belligerent";
+  font-size: 46px;
+  color: #261624;
+}
+
+/* affichage des produits */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* conteneur des produits */
+.products-container {
+  background: none;
+  border: none;
+  height: 40vh;
+  margin: 100px auto auto 100px;
+}
+
+/* retire le soulignement sur les liens */
+.products-container a {
+  text-decoration: none;
+}
+
+/* retire les pointillés au clic des liens */
+*:focus, *:visited, *:active, *:hover  { outline:0 !important;}
+*::-moz-focus-inner {border:0;}
+
+/* applique une opacité sur les images au survol de la souris */
+.products-container img:hover {
+  opacity: 60%;
+}
+
+/* mise en forme des images des produits */
+.products-img {
+  max-height: 50%;
+  min-width: 50%;
+  vertical-align: bottom;
+  box-shadow: 2px 2px 10px #000000;
+  cursor: default;
+}
+
+/* mise en forme du nom des produits */
+.products-name {
+  font-weight: bold;
+  margin-top: 18px;
+  cursor: default;
+}
+
+/* mise en forme du pied de page */
+footer {
+  font-size: 18px;
+}
