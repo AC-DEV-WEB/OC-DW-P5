@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Belligerent';
+  src: url('../fonts/belligerent.ttf');
+}
+
+body {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  background-color: #F3E9F1;
+}
+
+.navbar {
+  font-size: 22px;
+}
+
+.logo {
+  width: 20%;
+}
+
+h1 {
+  font-family: "Belligerent";
+  font-size: 46px;
+  color: #261624;
+}
+
+footer {
+  font-size: 18px;
+}
