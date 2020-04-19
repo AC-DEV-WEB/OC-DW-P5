@@ -66,6 +66,8 @@ request.onload = function () {
   });
 
   custom.appendChild(label);
+  const br = document.createElement("br");
+  custom.appendChild(br);
   custom.appendChild(select);
 
   // on ajoute la description du produit
