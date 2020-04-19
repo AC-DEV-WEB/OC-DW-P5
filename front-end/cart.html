@@ -28,11 +28,75 @@
   </header>
 
   <main>
+    <div class="row">
+      <div class="col-md-4">
+        <form>
+          <div class="form-group">
+            <label for="lastname" class="control-label">Nom</label>
+            <input type="text" class="form-control" id="lastname" name="lastname">
+          </div>	
+          <div class="form-group">
+            <label for="firstname" class="control-label">Prénom</label>
+            <input type="text" class="form-control" id="firstname" name="firstname">
+          </div>	
+          <div class="form-group">
+            <label for="street1" class="control-label">Adresse</label>
+            <input type="text" class="form-control" id="street1" name="street1">
+          </div>
+          <div class="form-group">
+            <label for="phone" class="control-label">Téléphone</label>
+            <input type="text" class="form-control" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="city" class="control-label">Ville</label>
+            <input type="text" class="form-control" id="city" name="city">
+          </div>									     
+          <div class="form-group">
+            <label for="state" class="control-label">Région</label>
+            <select class="form-control" id="state">
+              <option value="AL">Alsace</option>
+              <option value="AQ">Aquitaine</option>
+              <option value="AU">Auvergne</option>
+              <option value="BN">Basse Normandie</option>
+              <option value="BO">Bourgogne</option>
+              <option value="BR">Bretagne</option>
+              <option value="CT">Centre</option>
+              <option value="CA">Champagne-Ardenne</option>
+              <option value="CO">Corse</option>
+              <option value="FC">Franche-Comté</option>
+              <option value="HN">Haute Normandie</option>
+              <option value="IDF">Ile-de-France</option>
+              <option value="LR">Languedoc-Roussillon</option>
+              <option value="LI">Limousin</option>
+              <option value="LO">Lorraine</option>
+              <option value="MP">Midi-Pyrénées</option>
+              <option value="NPC">Nord-Pas-de-Calais</option>
+              <option value="PD">Pays de la Loire</option>
+              <option value="PI">Picardie</option>
+              <option value="PC">Poitou-Charentes</option>
+              <option value="PACA">Provence-Alpes-Côte-d'Azur</option>
+              <option value="RA">Rhône-Alpes</option>
+            </select>					
+          </div>
+          <div class="form-group">
+            <label for="zip_id" class="control-label">Code postal</label>
+            <input type="text" class="form-control" id="zip_id" name="zip">
+          </div>		
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Paiement</button>
+          </div>
+        </form>	
+      </div>
+      <div id="product-cart" class="col-md-4">
 
+      </div>
+    </div>
   </main>
 
   <footer>
     <p class="text-center">© 2020 Orifurniture</p>
   </footer>
+
+  <script src="js/cart.js"></script>
 </body>
 </html>

@@ -77,6 +77,7 @@ request.onload = function () {
 
   // on créé le bouton "Ajouter au panier"
   const button = document.createElement("button");
+  button.id = "addToCart";
 
   // on crée le lien de la redirection au clic du bouton
   const link =  document.createElement("a");
@@ -95,8 +96,20 @@ request.onload = function () {
     } else {
       content.removeChild(button);
     }
-    
-    console.log(choice);
+
+    // on stocke les données du produit dans le navigateur internet de l'utilisateur
+    document.getElementById("addToCart").onclick = function() {
+      let data  = {
+        id: furniture._id,
+        image: furniture.imageUrl,
+        name: furniture.name,
+        price: furniture.price,
+        varnish: choice
+      };
+
+      var data_json = JSON.stringify(data);
+      sessionStorage.setItem("productData", data_json);
+    };
   };  
 }
 
