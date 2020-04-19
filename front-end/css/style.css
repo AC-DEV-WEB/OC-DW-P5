@@ -93,9 +93,14 @@ h1 {
   cursor: default;
 }
 
+/* mise en forme du prix des produits */
 .products-price {
   font-weight: bold;
   font-size: 18px;
+}
+
+.product-img {
+  width: 50%;
 }
 
 /* mise en forme du pied de page */

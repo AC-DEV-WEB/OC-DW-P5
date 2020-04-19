@@ -6,7 +6,6 @@ request.open('GET', 'http://localhost:3000/api/furniture', true)
 
 // charge les données de notre JSON récupéré
 request.onload = function () {
-
   // on transfome les données en objets JavaScript
   let furnitures = JSON.parse(this.response);
 
@@ -46,4 +45,4 @@ request.onload = function () {
 }
 
 // on envoie la requête
-request.send()
+request.send();
