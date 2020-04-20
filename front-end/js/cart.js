@@ -45,13 +45,13 @@ if ($_GET('id') == null) {
 
     // quantité
     const quantity = document.createElement("p");
-    quantity.textContent = "Quantité : ";
+    quantity.textContent = "Quantité : " + $_GET('quantity');
     quantity.classList.add("product-cart-quantity")
     show.appendChild(quantity);
 
     // prix du produit
     const price = document.createElement("p");
-    price.textContent = "Total : " + furniture.price + " €";
+    price.textContent = "Total : " + furniture.price*$_GET('quantity') + " €";
     price.classList.add("product-cart-price");
     show.appendChild(price);
   }

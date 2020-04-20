@@ -21,7 +21,7 @@ request.onload = function () {
   
   // on créé un élément "div" pour stocker les informations du produit
   const content = document.createElement("div");
-  content.classList.add("product-content");
+  content.id = "product-content";
   show.appendChild(content);
 
   // nom du produit
@@ -92,29 +92,28 @@ request.onload = function () {
   // on crée le lien de la redirection au clic du bouton
   const link =  document.createElement("a");
 
-  // on récupère le choix de l'utilisateur au changement d'état de l'input "Quantité"
-  document.getElementById("product-input").onchange = function() {
-    let getQuantity = document.getElementById("product-input").value
-  
+  document.getElementById("product-content").onchange = function() {
+    // on récupère le choix de l'utilisateur au changement d'état de l'input "Quantité"
+    let getQuantity = document.getElementById("product-input").value;
+    document.getElementById("product-input").selectedIndex = getQuantity;
+
     // on récupère le choix de l'utilisateur au changement d'état du sélecteur
-    document.getElementById("varnish").onchange = function() {
-      let getVarnish = document.getElementById("varnish")
-      let choice = getVarnish.options[getVarnish.selectedIndex].text
+    let getVarnish = document.getElementById("varnish");
+    let choice = getVarnish.options[getVarnish.selectedIndex].text;
 
-      // cryptage de la valeur du vernis récupéré
-      const cryptedVarnish = cipher('hash@key!varnish$');
+    // cryptage de la valeur du vernis récupéré
+    const cryptedVarnish = cipher('hash@key!varnish$');
 
-      // on met à jour le bouton "Ajouter au panier" en fonction du choix de l'utilisateur
-      if (choice != choose.text) {
-        link.textContent = "Ajouter au panier";
-        link.href = "./cart.html?id=" + furniture._id + "&quantity=" + getQuantity + "&varnish=" + cryptedVarnish(choice);
-        button.appendChild(link);
-        content.appendChild(button);
-      } else {
-        content.removeChild(button);
-      }
-    };
-  }; 
+    // on met à jour le bouton "Ajouter au panier" en fonction du choix de l'utilisateur
+    if (choice != choose.text) {
+      link.textContent = "Ajouter au panier";
+      link.href = "./cart.html?id=" + furniture._id + "&quantity=" + getQuantity + "&varnish=" + cryptedVarnish(choice);
+      button.appendChild(link);
+      content.appendChild(button);
+    } else {
+      content.removeChild(button);
+    }
+  };
 }
 
 // on envoie la requête

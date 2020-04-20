@@ -111,19 +111,19 @@ h1 {
 }
 
 /* conteneur du produit */
-.product-content {
+#product-content {
   margin-top: 200px;
   margin-left: 100px;
 }
 
 /* mise en forme du bouton "Ajouter au panier" */
-.product-content button {
+#product-content button {
   background-color: #965FE9;
   border: none;
 }
 
 /* retire le soulignement sur le lien du bouton "Ajouter au panier" */
-.product-content a {
+#product-content a {
   color: white;
   padding: 15px 32px;
   text-align: center;
@@ -184,7 +184,7 @@ footer {
 
 /* mobile */
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  .product-content {
+  #product-content {
     margin: 60px 100px 100px 100px;
   }
   
@@ -193,7 +193,7 @@ footer {
     max-width: 80%;
   }
 
-  .product-content button {
+  #product-content button {
     margin-top: 40%;
   }
 
@@ -205,14 +205,14 @@ footer {
     font-size: 22px;
   }
 
-  .product-price, .product-custom, .product-content a {
+  .product-price, .product-custom, #product-content a {
     font-size: 18px;
   }
 }
 
 /* tablette */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .product-content {
+  #product-content {
     margin: 40px 120px 100px 200px;
   }
   
@@ -228,7 +228,7 @@ footer {
 
 /* tablette 12.9" */
 @media only screen and (min-width: 1024px) and (max-width: 1279px) {
-  .product-content {
+  #product-content {
     margin: 50px 100px 100px 200px;
   }
   
@@ -244,7 +244,7 @@ footer {
 
 /* laptop */
 @media only screen and (min-width: 1280px) and (max-width: 1440px) {
-  .product-content {
+  #product-content {
     margin: 120px 100px 100px 100px;
   }
   
