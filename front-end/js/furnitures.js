@@ -2,7 +2,7 @@
 let request = new XMLHttpRequest()
 
 // ouvre une nouvelle connexion en utilisant la méthode GET
-request.open('GET', 'http://localhost:3000/api/furniture', true)
+request.open('GET', api, true)
 
 // charge les données de notre JSON récupéré
 request.onload = function () {

@@ -1,12 +1,8 @@
 // variable pour affecter l'objet XMLHttpRequest
 let request = new XMLHttpRequest()
 
-// on récupère l'ID de l'URL
-let url = window.location.href;
-let productID = url.substring(url.lastIndexOf('=') + 1);
-
 // ouvre une nouvelle connexion en utilisant la méthode GET
-request.open('GET', 'http://localhost:3000/api/furniture/' + productID)
+request.open('GET', api + $_GET('id'))
 
 // charge les données de notre JSON récupéré
 request.onload = function () {
@@ -15,7 +11,8 @@ request.onload = function () {
 
   // on défini sur quel élément HTML on va opérer
   let show = document.getElementById("product");
-  
+
+  // image du produit
   const image = document.createElement("img");
   image.src = furniture.imageUrl;
   image.alt = furniture.description;
@@ -35,7 +32,7 @@ request.onload = function () {
 
   // prix du produit
   const price = document.createElement("p");
-  price.textContent = price.textContent = "Prix : " + furniture.price + " €";
+  price.textContent = "Prix : " + furniture.price + " €";
   price.classList.add("product-price");
   content.appendChild(price);
 
@@ -45,9 +42,9 @@ request.onload = function () {
   content.appendChild(custom);
 
   // on créé un sélecteur pour le choix de la personnalisation du produit
-  const label = document.createElement("label");
-  label.setAttribute("for", "varnish");
-  label.textContent = "Vernis :";
+  const varnishLabel = document.createElement("label");
+  varnishLabel.setAttribute("for", "varnish");
+  varnishLabel.textContent = "Vernis :";
 
   const select = document.createElement("select");
   select.id = "varnish";
@@ -62,13 +59,27 @@ request.onload = function () {
       if (element == options[i]) {
         select[select.options.length] = new Option(element, select.options.length, false, false);
       }
-    }              
+    }          
   });
 
-  custom.appendChild(label);
+  custom.appendChild(varnishLabel);
   const br = document.createElement("br");
   custom.appendChild(br);
   custom.appendChild(select);
+  custom.appendChild(br);
+
+  // on créé un input de type number pour indiquer la quantité de produits
+  const quantityLabel = document.createElement("label")
+  quantityLabel.setAttribute("for", "varnish");
+  quantityLabel.textContent = ("Quantité :");
+
+  const input = document.createElement("input");
+  input.setAttribute("type", "number");
+  input.setAttribute("min", "1");
+  input.value = "1";
+  input.id = "product-input";
+  custom.appendChild(quantityLabel);
+  custom.appendChild(input);
 
   // on ajoute la description du produit
   const description = document.createElement("p");
@@ -77,40 +88,33 @@ request.onload = function () {
 
   // on créé le bouton "Ajouter au panier"
   const button = document.createElement("button");
-  button.id = "addToCart";
 
   // on crée le lien de la redirection au clic du bouton
   const link =  document.createElement("a");
+
+  // on récupère le choix de l'utilisateur au changement d'état de l'input "Quantité"
+  document.getElementById("product-input").onchange = function() {
+    let getQuantity = document.getElementById("product-input").value
   
-  // on récupère le choix de l'utilisateur au changement d'état du sélecteur
-  document.getElementById("varnish").onchange = function() {
-    let getVarnish = document.getElementById("varnish")
-    let choice = getVarnish.options[getVarnish.selectedIndex].text
+    // on récupère le choix de l'utilisateur au changement d'état du sélecteur
+    document.getElementById("varnish").onchange = function() {
+      let getVarnish = document.getElementById("varnish")
+      let choice = getVarnish.options[getVarnish.selectedIndex].text
 
-    // on met à jour le bouton "Ajouter au panier" en fonction du choix de l'utilisateur
-    if (choice != choose.text) {
-      link.textContent = "Ajouter au panier";
-      link.href = "./cart.html?id=" + furniture._id;
-      button.appendChild(link);
-      content.appendChild(button);
-    } else {
-      content.removeChild(button);
-    }
+      // cryptage de la valeur du vernis récupéré
+      const cryptedVarnish = cipher('hash@key!varnish$');
 
-    // on stocke les données du produit dans le navigateur internet de l'utilisateur
-    document.getElementById("addToCart").onclick = function() {
-      let data  = {
-        id: furniture._id,
-        image: furniture.imageUrl,
-        name: furniture.name,
-        price: furniture.price,
-        varnish: choice
-      };
-
-      var data_json = JSON.stringify(data);
-      sessionStorage.setItem("productData", data_json);
+      // on met à jour le bouton "Ajouter au panier" en fonction du choix de l'utilisateur
+      if (choice != choose.text) {
+        link.textContent = "Ajouter au panier";
+        link.href = "./cart.html?id=" + furniture._id + "&quantity=" + getQuantity + "&varnish=" + cryptedVarnish(choice);
+        button.appendChild(link);
+        content.appendChild(button);
+      } else {
+        content.removeChild(button);
+      }
     };
-  };  
+  }; 
 }
 
 // on envoie la requête
