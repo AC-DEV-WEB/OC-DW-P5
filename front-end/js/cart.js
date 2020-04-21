@@ -1,22 +1,10 @@
-// variable pour affecter l'objet XMLHttpRequest
-let request = new XMLHttpRequest()
-
-// ouvre une nouvelle connexion en utilisant la méthode GET
-request.open('GET', api + $_GET('id'))
-
-if ($_GET('id') == null) {
-  alert("Votre panier est vide !");
-  window.location = "index.html";
-} else {
-  // on récupère le vernis contenue dans l'URL et on décrypte la valeur du vernis envoyé
-  const decryptedVarnish = decipher('hash@key!varnish$');
-  let productVarnish = decryptedVarnish($_GET('varnish'));
-
-  // charge les données de notre JSON récupéré
-  request.onload = function () {
-    // on transfome les données en objets JavaScript
-    let furniture = JSON.parse(this.response);
-
+// on vérifie la compatibilité du navigateur avec le localStorage
+if(typeof sessionStorage!='undefined') {
+  // on vérifie que le localStorage est bien vide
+  if (window.localStorage.getItem('itemsArray') !== null) {
+    // on récupère les données des produits sélectionnés par l'utilisateur depuis le stockage de son navigateur
+    let items = JSON.parse(localStorage.getItem("itemsArray"));
+    
     // on défini sur quel élément HTML on va opérer
     let show = document.getElementById("product-cart");
 
@@ -24,38 +12,57 @@ if ($_GET('id') == null) {
     resume.textContent = ("Résumé de votre commande :");
     show.appendChild(resume);
 
-    // image du produit
-    const image = document.createElement("img");
-    image.src = furniture.imageUrl;
-    image.alt = furniture.description;
-    image.classList.add("product-cart-img");
-    show.appendChild(image);
+    // on crée de façon dynamique les élements HTML en fonction du nombre de produits
+    for (i = 0; i < items.length; i++) {
+      console.log(items[i].name);
 
-    // nom du produit
-    const name = document.createElement("p");
-    name.textContent = "Article : " + furniture.name;
-    name.classList.add("product-cart-name");
-    show.appendChild(name);
+      // image
+      const image = document.createElement("img");
+      image.src = items[i].image;
+      image.alt = items[i].description;
+      image.classList.add("product-cart-img");
+      show.appendChild(image);
 
-    // vernis
-    const varnish = document.createElement("p");
-    varnish.textContent = "Vernis : " + productVarnish;
-    varnish.classList.add("product-cart-varnish");
-    show.appendChild(varnish);
+      // nom
+      const name = document.createElement("p");
+      name.textContent = "Article : " + items[i].name;
+      name.classList.add("product-cart-name");
+      show.appendChild(name);
 
-    // quantité
-    const quantity = document.createElement("p");
-    quantity.textContent = "Quantité : " + $_GET('quantity');
-    quantity.classList.add("product-cart-quantity")
-    show.appendChild(quantity);
+      // vernis
+      const varnish = document.createElement("p");
+      varnish.textContent = "Vernis : " + items[i].varnish;
+      varnish.classList.add("product-cart-varnish");
+      show.appendChild(varnish);
 
-    // prix du produit
-    const price = document.createElement("p");
-    price.textContent = "Total : " + furniture.price*$_GET('quantity') + " €";
-    price.classList.add("product-cart-price");
-    show.appendChild(price);
+      // quantité
+      const quantity = document.createElement("p");
+      quantity.textContent = "Quantité : " + items[i].quantity;
+      quantity.classList.add("product-cart-quantity")
+      show.appendChild(quantity);
+
+      getTotal = items[i].price*items[i].quantity;
+    }
+
+    // prix total
+    const total = document.createElement("p");
+    total.textContent = "Total : " + getTotal + " €";
+    total.classList.add("product-cart-total");
+    show.appendChild(total);
+
+    const resetButton = document.createElement("button");
+    resetButton.textContent = "Vider le panier";
+    resetButton.id = "resetCart";
+    show.appendChild(resetButton);
+
+    // on vide le panier
+    document.getElementById("resetCart").onclick = function() {
+      window.localStorage.clear()
+      location.reload()
+    }; 
+  } else {
+    alert("⚠️ Votre panier est vide !");
   }
-
-  // on envoie la requête
-  request.send();
+} else {
+  alert("⚠️ Navigateur non supporté !");
 }

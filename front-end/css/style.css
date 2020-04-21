@@ -161,6 +161,18 @@ h1 {
   width: 500px;
 }
 
+#product-varnish {
+  width: 40%;
+  margin-left: 1%;
+  text-align: center;
+}
+
+#product-input {
+  width: 15%;
+  margin-left: 1%;
+  text-align: center;
+}
+
 /* mise en forme du pied de page */
 footer {
   position: fixed;
@@ -177,7 +189,7 @@ footer {
 /*** PANIER ***/
 
 .product-cart-img {
-  width: 80%;
+  width: 30%;
 }
 
 /*** MEDIA QUERIES ***/
@@ -205,6 +217,16 @@ footer {
     font-size: 22px;
   }
 
+  #product-varnish {
+    width: 60%;
+    margin-left: 3%;
+  }
+  
+  #product-input {
+    width: 30%;
+    margin-left: 3%;
+  }
+
   .product-price, .product-custom, #product-content a {
     font-size: 18px;
   }
@@ -224,6 +246,10 @@ footer {
   .product-custom {
     width: 600px;
   }
+
+  #product-varnish {
+    width: 30%;
+  }
 }
 
 /* tablette 12.9" */
@@ -239,6 +265,14 @@ footer {
 
   .product-custom {
     width: 800px;
+  }
+
+  #product-varnish {
+    width: 25%;
+  }
+  
+  #product-input {
+    width: 10%;
   }
 }
 

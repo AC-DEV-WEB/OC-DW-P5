@@ -4,7 +4,6 @@ let request = new XMLHttpRequest()
 // ouvre une nouvelle connexion en utilisant la méthode GET
 request.open('GET', api + $_GET('id'))
 
-// charge les données de notre JSON récupéré
 request.onload = function () {
    // on transfome les données en objets JavaScript
   let furniture = JSON.parse(this.response);
@@ -43,11 +42,11 @@ request.onload = function () {
 
   // on créé un sélecteur pour le choix de la personnalisation du produit
   const varnishLabel = document.createElement("label");
-  varnishLabel.setAttribute("for", "varnish");
+  varnishLabel.setAttribute("for", "product-varnish");
   varnishLabel.textContent = "Vernis :";
 
   const select = document.createElement("select");
-  select.id = "varnish";
+  select.id = "product-varnish";
 
   let choose = document.createElement("option");
   choose.text = "Choisir un vernis";
@@ -70,7 +69,7 @@ request.onload = function () {
 
   // on créé un input de type number pour indiquer la quantité de produits
   const quantityLabel = document.createElement("label")
-  quantityLabel.setAttribute("for", "varnish");
+  quantityLabel.setAttribute("for", "product-varnish");
   quantityLabel.textContent = ("Quantité :");
 
   const input = document.createElement("input");
@@ -88,30 +87,47 @@ request.onload = function () {
 
   // on créé le bouton "Ajouter au panier"
   const button = document.createElement("button");
+  button.id = "addToCart";
 
   // on crée le lien de la redirection au clic du bouton
   const link =  document.createElement("a");
 
   document.getElementById("product-content").onchange = function() {
     // on récupère le choix de l'utilisateur au changement d'état de l'input "Quantité"
-    let getQuantity = document.getElementById("product-input").value;
-    document.getElementById("product-input").selectedIndex = getQuantity;
+    getQuantity = document.getElementById("product-input").value;
 
     // on récupère le choix de l'utilisateur au changement d'état du sélecteur
-    let getVarnish = document.getElementById("varnish");
-    let choice = getVarnish.options[getVarnish.selectedIndex].text;
-
-    // cryptage de la valeur du vernis récupéré
-    const cryptedVarnish = cipher('hash@key!varnish$');
+    let getChoice = document.getElementById("product-varnish");
+    getVarnish = getChoice.options[getChoice.selectedIndex].text;
 
     // on met à jour le bouton "Ajouter au panier" en fonction du choix de l'utilisateur
-    if (choice != choose.text) {
+    if (getVarnish != choose.text) {
       link.textContent = "Ajouter au panier";
-      link.href = "./cart.html?id=" + furniture._id + "&quantity=" + getQuantity + "&varnish=" + cryptedVarnish(choice);
+      link.href = "./cart.html";
       button.appendChild(link);
       content.appendChild(button);
+
+      // on stock les données des produits sélectionnés par l'utilisateur dans le stockage de son navigateur
+      document.getElementById("addToCart").onclick = function() {
+        let oldItems = JSON.parse(localStorage.getItem("itemsArray") || "[]");
+        let newItem  = {
+          id: furniture._id,
+          image: furniture.imageUrl,
+          description: furniture.description,
+          name: furniture.name,
+          price: furniture.price,
+          quantity: getQuantity,
+          varnish: getVarnish
+        };
+    
+        oldItems.push(newItem);
+        let oldItems_json = JSON.stringify(oldItems);
+        localStorage.setItem("itemsArray", oldItems_json);
+      };
     } else {
-      content.removeChild(button);
+      if (document.getElementById('addToCart')) {
+        content.removeChild(button);
+      }
     }
   };
 }

@@ -1,3 +1,9 @@
+// déclarations des variables
+let getQuantity // quantité de produit sélectionné
+let getVarnish // choix du vernis
+let getTotal // prix total du panier
+
+// URL de l'API
 const api = 'http://localhost:3000/api/furniture/';
 
 // retourne les paramètres d’une URL 
@@ -16,29 +22,4 @@ function $_GET(param) {
   }
 
   return vars;
-}
-
-// permet d'encrypter des données
-const cipher = salt => {
-  const textToChars = text => text.split('').map(c => c.charCodeAt(0));
-  const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
-  const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
-
-  return text => text.split('')
-    .map(textToChars)
-    .map(applySaltToChar)
-    .map(byteHex)
-    .join('');
-}
-
-// permet de décrypter des données
-const decipher = salt => {
-  const textToChars = text => text.split('').map(c => c.charCodeAt(0));
-  const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
-
-  return encoded => encoded.match(/.{1,2}/g)
-    .map(hex => parseInt(hex, 16))
-    .map(applySaltToChar)
-    .map(charCode => String.fromCharCode(charCode))
-    .join('');
 }
