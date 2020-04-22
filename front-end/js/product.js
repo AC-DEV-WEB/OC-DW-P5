@@ -1,5 +1,5 @@
 // variable pour affecter l'objet XMLHttpRequest
-let request = new XMLHttpRequest()
+let request = new XMLHttpRequest();
 
 // ouvre une nouvelle connexion en utilisant la méthode GET
 request.open('GET', api + $_GET('id'))
@@ -107,10 +107,10 @@ request.onload = function () {
       button.appendChild(link);
       content.appendChild(button);
 
-      // on stock les données des produits sélectionnés par l'utilisateur dans le stockage de son navigateur
+      // on stock les données des produits sélectionnés par l'utilisateur dans le localStorage
       document.getElementById("addToCart").onclick = function() {
-        let oldItems = JSON.parse(localStorage.getItem("itemsArray") || "[]");
-        let newItem  = {
+        let storageProducts = JSON.parse(localStorage.getItem("products") || "[]");
+        let product  = {
           id: furniture._id,
           image: furniture.imageUrl,
           description: furniture.description,
@@ -119,10 +119,19 @@ request.onload = function () {
           quantity: getQuantity,
           varnish: getVarnish
         };
-    
-        oldItems.push(newItem);
-        let oldItems_json = JSON.stringify(oldItems);
-        localStorage.setItem("itemsArray", oldItems_json);
+        
+        // on contrôle si le produit existe déjà dans le localStorage
+        if (window.localStorage.getItem("products") == null) {
+          storageProducts.push(product);
+          localStorage.setItem("products", JSON.stringify(storageProducts));
+        } else {
+          if (!storageProducts.some(item => item.id === furniture._id)) {
+            storageProducts.push(product);
+            localStorage.setItem("products", JSON.stringify(storageProducts));
+          } else {
+            alert("⚠️ Vous avez déjà ajouté cet article à votre panier !\n\nℹ️ Vous pouvez modifier l'article depuis celui-ci.");
+          }
+        }
       };
     } else {
       if (document.getElementById('addToCart')) {

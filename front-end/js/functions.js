@@ -1,6 +1,6 @@
-// déclarations des variables
-let getQuantity // quantité de produit sélectionné
-let getVarnish // choix du vernis
+// déclaration des variables
+let getQuantity // quantité de produit(s) sélectionné(s) par l'utilisateur
+let getVarnish // vernis du produit sélectionné par l'utilisateur
 let getTotal // prix total du panier
 
 // URL de l'API

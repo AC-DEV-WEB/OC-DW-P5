@@ -1,9 +1,10 @@
 // on vérifie la compatibilité du navigateur avec le localStorage
 if(typeof sessionStorage!='undefined') {
-  // on vérifie que le localStorage est bien vide
-  if (window.localStorage.getItem('itemsArray') !== null) {
-    // on récupère les données des produits sélectionnés par l'utilisateur depuis le stockage de son navigateur
-    let items = JSON.parse(localStorage.getItem("itemsArray"));
+  // on vérifie si le localStorage n'est pas vide
+  if (window.localStorage.getItem("products") !== null) {
+    // on récupère les données des produits sélectionnés par l'utilisateur depuis le localStorage
+    let storageProducts = JSON.parse(localStorage.getItem("products"));
+    console.log("storageProducts", storageProducts);
     
     // on défini sur quel élément HTML on va opérer
     let show = document.getElementById("product-cart");
@@ -13,35 +14,33 @@ if(typeof sessionStorage!='undefined') {
     show.appendChild(resume);
 
     // on crée de façon dynamique les élements HTML en fonction du nombre de produits
-    for (i = 0; i < items.length; i++) {
-      console.log(items[i].name);
-
+    for (let i = 0; i < storageProducts.length; i++) {
       // image
       const image = document.createElement("img");
-      image.src = items[i].image;
-      image.alt = items[i].description;
+      image.src = storageProducts[i].image;
+      image.alt = storageProducts[i].description;
       image.classList.add("product-cart-img");
       show.appendChild(image);
 
       // nom
       const name = document.createElement("p");
-      name.textContent = "Article : " + items[i].name;
+      name.textContent = "Article : " + storageProducts[i].name;
       name.classList.add("product-cart-name");
       show.appendChild(name);
 
       // vernis
       const varnish = document.createElement("p");
-      varnish.textContent = "Vernis : " + items[i].varnish;
+      varnish.textContent = "Vernis : " + storageProducts[i].varnish;
       varnish.classList.add("product-cart-varnish");
       show.appendChild(varnish);
 
       // quantité
       const quantity = document.createElement("p");
-      quantity.textContent = "Quantité : " + items[i].quantity;
+      quantity.textContent = "Quantité : " + storageProducts[i].quantity;
       quantity.classList.add("product-cart-quantity")
       show.appendChild(quantity);
 
-      getTotal = items[i].price*items[i].quantity;
+      getTotal = storageProducts[i].price*storageProducts[i].quantity;
     }
 
     // prix total
@@ -59,7 +58,7 @@ if(typeof sessionStorage!='undefined') {
     document.getElementById("resetCart").onclick = function() {
       window.localStorage.clear()
       location.reload()
-    }; 
+    };
   } else {
     alert("⚠️ Votre panier est vide !");
   }
