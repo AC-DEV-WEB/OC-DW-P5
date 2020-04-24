@@ -1,7 +1,7 @@
 // déclaration des variables
-let getQuantity // quantité de produit(s) sélectionné(s) par l'utilisateur
+let getTotal = 0 // prix total du panier
+let getQuantity = 0 // quantité de produit(s) sélectionné(s) par l'utilisateur
 let getVarnish // vernis du produit sélectionné par l'utilisateur
-let getTotal // prix total du panier
 
 // URL de l'API
 const api = 'http://localhost:3000/api/furniture/';

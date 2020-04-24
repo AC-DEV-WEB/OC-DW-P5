@@ -1,12 +1,8 @@
-// variable pour affecter l'objet XMLHttpRequest
-let request = new XMLHttpRequest();
-
-// ouvre une nouvelle connexion en utilisant la méthode GET
-request.open('GET', api + $_GET('id'))
-
-request.onload = function () {
-   // on transfome les données en objets JavaScript
-  let furniture = JSON.parse(this.response);
+fetch(api + $_GET('id'))
+.then(response => response.json())
+.then(response => {
+  // on transfome les données en objets JavaScript
+  let furniture = response;
 
   // on défini sur quel élément HTML on va opérer
   let show = document.getElementById("product");
@@ -63,7 +59,6 @@ request.onload = function () {
 
   custom.appendChild(varnishLabel);
   const br = document.createElement("br");
-  custom.appendChild(br);
   custom.appendChild(select);
   custom.appendChild(br);
 
@@ -75,6 +70,7 @@ request.onload = function () {
   const input = document.createElement("input");
   input.setAttribute("type", "number");
   input.setAttribute("min", "1");
+  input.setAttribute("max", "10");
   input.value = "1";
   input.id = "product-input";
   custom.appendChild(quantityLabel);
@@ -87,6 +83,7 @@ request.onload = function () {
 
   // on créé le bouton "Ajouter au panier"
   const button = document.createElement("button");
+  button.classList.add("btn");
   button.id = "addToCart";
 
   // on crée le lien de la redirection au clic du bouton
@@ -109,8 +106,8 @@ request.onload = function () {
 
       // on stock les données des produits sélectionnés par l'utilisateur dans le localStorage
       document.getElementById("addToCart").onclick = function() {
-        let storageProducts = JSON.parse(localStorage.getItem("products") || "[]");
-        let product  = {
+        let storageProducts = JSON.parse(localStorage.getItem(furniture._id) || "[]");
+        let productData  = {
           id: furniture._id,
           image: furniture.imageUrl,
           description: furniture.description,
@@ -121,15 +118,13 @@ request.onload = function () {
         };
         
         // on contrôle si le produit existe déjà dans le localStorage
-        if (window.localStorage.getItem("products") == null) {
-          storageProducts.push(product);
-          localStorage.setItem("products", JSON.stringify(storageProducts));
+        if (window.localStorage.getItem(furniture._id+'&'+getVarnish) == null) {
+          storageProducts.push(productData);
+          localStorage.setItem(furniture._id+'&'+getVarnish, JSON.stringify(storageProducts));
         } else {
-          if (!storageProducts.some(item => item.id === furniture._id)) {
-            storageProducts.push(product);
-            localStorage.setItem("products", JSON.stringify(storageProducts));
-          } else {
-            alert("⚠️ Vous avez déjà ajouté cet article à votre panier !\n\nℹ️ Vous pouvez modifier l'article depuis celui-ci.");
+          if (!storageProducts.some(item => item.varnish === getVarnish)) {
+            storageProducts.push(productData);
+            localStorage.setItem(furniture._id+'&'+getVarnish, JSON.stringify(storageProducts));
           }
         }
       };
@@ -139,7 +134,4 @@ request.onload = function () {
       }
     }
   };
-}
-
-// on envoie la requête
-request.send();
+})

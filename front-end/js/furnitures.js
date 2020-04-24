@@ -1,13 +1,8 @@
-// variable pour affecter l'objet XMLHttpRequest
-let request = new XMLHttpRequest()
-
-// ouvre une nouvelle connexion en utilisant la méthode GET
-request.open('GET', api, true)
-
-// charge les données de notre JSON récupéré
-request.onload = function () {
+fetch(api)
+.then(response => response.json())
+.then(response => {
   // on transfome les données en objets JavaScript
-  let furnitures = JSON.parse(this.response);
+  let furnitures = response;
 
   // on compte le nombre d'objets
   for (let i = 0; i < furnitures.length; i++) {
@@ -34,6 +29,7 @@ request.onload = function () {
     const button = document.createElement("button");
     const link =  document.createElement("a");
     link.textContent = "Voir l'article";
+    link.classList.add("btn");
     link.href = "./product.html?id=" + furnitures[i]._id;
     button.appendChild(image);
     button.appendChild(name);
@@ -42,7 +38,5 @@ request.onload = function () {
     button.classList.add("products-content");
     show.appendChild(button);
   }
-}
-
-// on envoie la requête
-request.send();
+})
+  
