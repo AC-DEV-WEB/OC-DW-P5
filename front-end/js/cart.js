@@ -101,7 +101,7 @@ if (window.localStorage !== null) {
         refreshButton.classList.add("btn-info");
         refreshButton.classList.add("btn-sm");
         refreshButton.classList.add("mr-1");
-        refreshButton.value = storageProducts[i].id+'&'+storageProducts[i].varnish;
+        refreshButton.value = storageProducts[i].id+':&:'+storageProducts[i].varnish;
         refreshButton.setAttribute( "onclick", "javascript: refreshProduct(this);")
         tdActions.appendChild(refreshButton);
 
@@ -132,7 +132,7 @@ if (window.localStorage !== null) {
         deleteButton.classList.add("btn");
         deleteButton.classList.add("btn-danger");
         deleteButton.classList.add("btn-sm");
-        deleteButton.value = storageProducts[i].id+'&'+storageProducts[i].varnish;
+        deleteButton.value = storageProducts[i].id+':&:'+storageProducts[i].varnish;
         deleteButton.setAttribute( "onclick", "javascript: eraseProduct(this);");
         tdActions.appendChild(deleteButton);
 

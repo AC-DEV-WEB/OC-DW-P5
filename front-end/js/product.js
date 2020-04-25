@@ -118,13 +118,13 @@ fetch(api + $_GET('id'))
         };
         
         // on contrôle si le produit existe déjà dans le localStorage
-        if (window.localStorage.getItem(furniture._id+'&'+getVarnish) == null) {
+        if (window.localStorage.getItem(furniture._id+':&:'+getVarnish) == null) {
           storageProducts.push(productData);
-          localStorage.setItem(furniture._id+'&'+getVarnish, JSON.stringify(storageProducts));
+          localStorage.setItem(furniture._id+':&:'+getVarnish, JSON.stringify(storageProducts));
         } else {
           if (!storageProducts.some(item => item.varnish === getVarnish)) {
             storageProducts.push(productData);
-            localStorage.setItem(furniture._id+'&'+getVarnish, JSON.stringify(storageProducts));
+            localStorage.setItem(furniture._id+':&:'+getVarnish, JSON.stringify(storageProducts));
           }
         }
       };
