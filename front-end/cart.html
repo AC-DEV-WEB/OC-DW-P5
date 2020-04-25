@@ -43,31 +43,31 @@
                 <div class="modal-body mx-3">
                   <div class="md-form mb-3">
                     <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="name" class="form-control validate" pattern="([a-zA-Z]{3,30}\s*)+">
-                    <label data-error="wrong" data-success="right" for="name">Prénom</label>
+                    <input type="text" id="firstName" class="form-control validate" placeholder="Prénom" pattern="([a-zA-Z]{3,30}\s*)+">
+                    <label data-error="wrong" data-success="right" for="firstName">Prénom</label>
                   </div>
 
                   <div class="md-form mb-3">
                     <i class="fa fa-user-plus prefix grey-text"></i>
-                    <input type="text" id="lastname" class="form-control validate" pattern="[a-zA-Z]{3,30}">
-                    <label data-error="wrong" data-success="right" for="lastname">Nom</label>
+                    <input type="text" id="lastName" class="form-control validate" placeholder="Nom" pattern="[a-zA-Z]{3,30}">
+                    <label data-error="wrong" data-success="right" for="lastName">Nom</label>
                   </div>
 
                   <div class="md-form mb-3">
                     <i class="fa fa-home prefix grey-text"></i>
-                    <input type="text" id="address" class="form-control validate" pattern="^\d+\s[A-z]+\s[A-z]+\s[A-z]+">
+                    <input type="text" id="address" class="form-control validate" placeholder="137 Avenue du Centre" pattern="^\d+\s[A-z]+\s[A-z]+\s[A-z]+">
                     <label data-error="wrong" data-success="right" for="address">Adresse</label>
                   </div>
 
                   <div class="md-form mb-3">
                     <i class="fa fa-building prefix grey-text"></i>
-                    <input type="text" id="city" class="form-control validate" pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$">
+                    <input type="text" id="city" class="form-control validate" placeholder="75000" pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$">
                     <label data-error="wrong" data-success="right" for="city">Ville</label>
                   </div>
 
                   <div class="md-form mb-4">
                     <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="email" class="form-control validate" required>
+                    <input type="email" id="email" class="form-control validate" placeholder="prenom.nom@email.fr" required>
                     <label data-error="wrong" data-success="right" for="email">Email</label>
                   </div>
 

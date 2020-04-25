@@ -115,16 +115,15 @@ if (window.localStorage !== null) {
         var refreshProduct = function(refreshBtn) {
           let key = refreshBtn.value;
           let storageProduct = JSON.parse(localStorage.getItem(key));
-
+          
           for (let i = 0; i < storageProduct.length; i++) {
-            if(newQuantity != storageProduct[i].quantity) {
-              storageProduct[i].quantity = newQuantity;
-              break;
-            }
+            storageProduct[i].quantity = newQuantity;
           }
 
-          localStorage.setItem(key, JSON.stringify(storageProduct));
-          location.reload();
+          if(typeof(newQuantity) === "string") {
+            localStorage.setItem(key, JSON.stringify(storageProduct));
+            window.location.reload();
+          }
         }
 
         // on créé le bouton pour supprimer le produit
@@ -145,7 +144,7 @@ if (window.localStorage !== null) {
         // on supprime la clé du produit du localStorage
         var eraseProduct = function(deleteBtn) {
           localStorage.removeItem(deleteBtn.value);
-          location.reload();
+          window.location.reload();
         }
 
         // on ajoute les éléments au DOM
@@ -161,15 +160,6 @@ if (window.localStorage !== null) {
         
         // on récupère le prix total du panier
         getTotal += storageProducts[i].price*parseInt(storageProducts[i].quantity);
-
-        // on créé l'objet "contact" du formulaire pour l'envoyer au server via la méthode POST
-        // const contactObject = {
-        //   firstname: firstname.value,
-        //   lastname: lastname.value,
-        //   adress: adress.value,
-        //   city: city.value,
-        //   email: email.value
-        // }
       }
     }
     // prix total
@@ -190,8 +180,23 @@ if (window.localStorage !== null) {
     // on vide le panier
     document.getElementById("resetCart").onclick = function() {
       window.localStorage.clear();
-      location.reload();
+      window.location.reload();
     };
+
+    let firstName = document.getElementById('firstName');
+    let lastName = document.getElementById('lastName');
+    let address = document.getElementById('address');
+    let city = document.getElementById('city');
+    let email = document.getElementById('email');
+
+    // on créé l'objet "contact" du formulaire pour l'envoyer au server via la méthode POST
+    // const contactObject = {
+    //   firstName: firstname.value,
+    //   lastName: lastname.value,
+    //   address: adress.value,
+    //   city: city.value,
+    //   email: email.value
+    // }
   } else {
     alert("⚠️ Votre panier est vide !");
     window.location = "index.html";
