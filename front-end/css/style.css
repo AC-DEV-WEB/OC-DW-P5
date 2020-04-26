@@ -220,17 +220,22 @@ h1 {
   width: 100%;
 }
 
-#submit {
-  background-color: #28A745;
-  color: white;
-  font-size: 18px;
-  width: 30%;
-}
-
 .btn-order a {
   color: white;
   font-size: 18px;
   text-decoration: none;
+}
+
+.btn-send {
+  background-color: #28A745;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  width: 50%;
+}
+
+.btn-send:hover {
+  color: white;
 }
 
 #erase-cart button {

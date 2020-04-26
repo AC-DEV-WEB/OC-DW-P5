@@ -15,7 +15,7 @@ function $_GET(param) {
     function( m, key, value ) { // callback
       vars[key] = value !== undefined ? value : '';
     }
-  );
+  )
 
   if ( param ) {
     return vars[param] ? vars[param] : null;	
