@@ -7,6 +7,7 @@
   <link rel="icon" href="images/favicon.png">
   <!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <title>Orifurniture | Vente de meubles vintage en chêne</title>
 </head>
@@ -28,13 +29,38 @@
   </header>
 
   <main>
-
+    <div class="container bg-white rounded mt-5">
+      <section class="customer-info section-content grid-container">
+        <div class="row first-row text-center">
+          <div class="col-sm mt-3">
+            <h3>Récapitulatif de la commande :</h3><br>
+            <h6><strong>MERCI BEAUCOUP POUR VOTRE COMMANDE !</strong></h6><br>
+            <h6>Votre commande est acceptée et sera traitée dès que possible.</h6><br>
+            <p>
+              <strong>Numéro de commande : </strong><span id="order-id"></span><br><br>
+              <strong>Date : </strong><span id="date"></span><br><br>
+              <strong>Total de la commande : </strong><span id="total-price"></span>
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="total-amount section-content">
+        <div class="row">
+          <div class="col-12 text-right">
+            <button class="btn btn-continue mb-3">
+              <a href="index.html"><i class="fa fa-angle-left"></i> Commander à nouveau</a>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="footer">
     <p class="text-center">© 2020 Orifurniture</p>
   </footer>
 
+  <script src="js/functions.js"></script>
   <script src="js/order.js"></script>
 </body>
 </html>

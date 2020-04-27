@@ -23,3 +23,41 @@ function $_GET(param) {
 
   return vars;
 }
+
+// renvoie la date du jour
+function getDate() {
+  // on défini les jours de la semaine
+  let days = new Array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+  
+  // on défini les mois de l'année
+  let month = new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+  
+  // on récupère la date
+  let date = new Date();
+
+  // on construit le message
+  let message = days[date.getDay()] + " ";
+  message += date.getDate() + " ";
+  message += month[date.getMonth()] + " ";
+  message += date.getFullYear();
+
+  return message;
+}
+
+// renvoie l'heure actuelle
+function getHour() {
+  // on récupère la date
+  let date = new Date();
+
+  // on récupère l'heure
+  let hours = date.getHours();
+
+  // on récupère les minutes
+  let minutes = date.getMinutes();
+
+  if(minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  return hours + "H" + minutes;
+}
