@@ -133,7 +133,7 @@ fetch(api + $_GET('id'))
         }
         
         // on contrôle si le produit existe déjà dans le localStorage
-        if (window.localStorage.length > 0) {
+        if (window.localStorage.getItem(furniture._id+':&:'+getVarnish) == null) {
           storageProducts.push(productData);
           localStorage.setItem(furniture._id+':&:'+getVarnish, JSON.stringify(storageProducts));
         } else {

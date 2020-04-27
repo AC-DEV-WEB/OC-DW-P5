@@ -210,21 +210,12 @@ if (window.localStorage !== null) {
 
     // on vérifie si le formulaire qui contient le contrôle des expressions réguilères est bien rempli
     $(document).ready(function () {
-      checkForm();
-      $('#firstName, #lastName, #address, #city, #email').change(checkForm);
+      // checkForm();
+      // $('#firstName, #lastName, #address, #city, #email').change(checkForm);
       
       // si tout est bon on peut faire la requête au serveur
       $("#submit").click(function() {
-        if(order()) {
-          // on vide le panier et on redirige l'utilisateur vers la page de confirmation de commande
-          window.localStorage.clear();
-          $("#modalForm").modal("toggle");
-          window.location="order.html";
-        } else {
-          // on vide le panier et on redirige l'utilisateur sur la page d'accueil en cas d'erreur
-          alert("⚠️ Une erreur est survenue lors de la validation de votre commande !");
-          window.location.reload();
-        }
+        order();
       })
     })
 
@@ -279,22 +270,22 @@ if (window.localStorage !== null) {
           body: JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(response => save(response, getTotal));
+        .then(response => {
+          let order = {
+            order_id: response.orderId,
+            total: getTotal
+          }
+    
+          // on sauvegarde l'order_id et le prix total de la commande 
+          window.sessionStorage.setItem("order", JSON.stringify(order));
 
-        return true
+          // on vide le panier et on redirige l'utilisateur vers la page de confirmation de commande
+          window.localStorage.clear();
+          window.location="order.html";
+        })
       } else {
-        return false
+        alert("⚠️ Erreur lors de la requête d'envoie au serveur !");
       }  
-    }
-
-    // sauvegarde l'order_id et le prix total de la commande 
-    function save(response, total) {
-      let order = {
-        order_id: response.orderId,
-        total: total
-      }
-
-      window.sessionStorage.setItem("order", JSON.stringify(order));
     }
   } else {
     alert("⚠️ Votre panier est vide !");
