@@ -29,8 +29,28 @@
 
   <main>
     <section>
-      <div id="products">
+      <div class="container">
+        <div class="justify-content-center">
+          <div id="main-carousel" class="carousel slide my-4" data-ride="carousel">
+            <ol id="carousel-indicators" class="carousel-indicators">
 
+            </ol>
+            <div id="carousel-inner" class="carousel-inner" role="listbox">
+
+            </div>
+            <a class="carousel-control-prev" href="#main-carousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Précédent</span>
+            </a>
+            <a class="carousel-control-next" href="#main-carousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Suivant</span>
+            </a>
+          </div>
+        </div>
+        <div id="products" class="row">
+
+        </div>    
       </div>
     </section>
   </main>
@@ -39,6 +59,10 @@
     <p class="text-center">© 2020 Orifurniture</p>
   </footer>
   
+  <!-- Bootstrap/jQuery JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   <script src="js/functions.js"></script>
   <script src="js/furnitures.js"></script>
 </body>

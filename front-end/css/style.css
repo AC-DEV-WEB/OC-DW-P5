@@ -1,3 +1,4 @@
+/* Debug */
 /* [class*="col-"] {
   border: 2px solid black;
   background-color: sandybrown;
@@ -25,6 +26,7 @@ body {
   background-color: #F3E9F1;
 }
 
+/* permet de conserver le footer en bas de page */
 main {
   margin: 1% 1% 0 2%;
   min-height: calc(100vh - 70px);
@@ -48,74 +50,52 @@ h1 {
   color: #261624;
 }
 
+/* mise en forme des boutons générale */
+.btn-action {
+  background-color: #8340e9;
+  border: none;
+  height: 50px;
+}
+
+.btn-action a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+}
+
 .footer {
   height: 50px;
 }
 
 /*** ACCUEIL ***/
 
-/* affichage des produits */
-#products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 80px;
-}
+/* mise en forme du carousel de la page d'acceuil */
+.carousel-inner > .carousel-item > img {
+  object-fit: cover;
+  object-position: 60% 50%;
 
-/* conteneur des produits */
-.products-content {
-  background: none;
-  border: none;
-  height: 50vh;
-  margin: 20px;
-}
+  width: 100%;
+  height: 300px;
 
-/* retire le soulignement sur les liens */
-.products-content a {
-  background-color: #8340e9;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-}
-
-.products-content a:hover {
-  color: white;
-}
-
-/* retire les pointillés au clic des liens */
-*:focus, *:visited, *:active, *:hover  { outline:0 !important;}
-*::-moz-focus-inner {border:0;}
-
-/* applique une opacité sur les images au survol de la souris */
-.products-content img:hover {
-  opacity: 60%;
 }
 
 /* mise en forme des images des produits */
-.products-img {
-  max-height: 40%;
-  min-width: 40%;
-  vertical-align: bottom;
-  box-shadow: 2px 2px 10px #000000;
-  cursor: default;
+.card-img-top {
+  object-fit: cover;
+  object-position: 50% 0;
+  width: 100%;
+  height: 367px;
 }
 
 /* mise en forme du nom des produits */
-.products-name {
+.card-title {
   font-family: "Belligerent";
   color: #261624;
-  font-size: 20px;
-  margin-top: 18px;
-  cursor: default;
+  font-size: 24px;;
 }
 
 /* mise en forme du prix des produits */
-.products-price {
+.card-price {
   font-weight: bold;
   font-size: 18px;
 }
@@ -153,11 +133,11 @@ h1 {
 
 /* mise en forme de l'image du produit */
 .product-img {
-  height: 60vh;
-  max-width: 36%;
-  margin-top: 90px;
+  min-height: 40vh;
+  max-height: 60vh;
+  max-width: 44%;
+  margin-top: 3%;
   box-shadow: 2px 2px 10px #000000;
-  cursor: default;
 }
 
 /* mise en forme du nom du produit */
@@ -180,12 +160,14 @@ h1 {
   width: 500px;
 }
 
+/* mise en forme du choix des vernis */
 #product-varnish {
   width: 40%;
   margin-left: 1%;
   text-align: center;
 }
 
+/* mise en forme du bouton d'ajout au panier */
 #product-input {
   width: 15%;
   margin-left: 1%;
@@ -205,18 +187,7 @@ h1 {
   vertical-align: middle;
 }
 
-.btn-continue {
-  background-color: #8340e9;
-  border: none;
-  height: 50px;
-}
-
-.btn-continue a {
-  color: white;
-  font-size: 18px;
-  text-decoration: none;
-}
-
+/* mise en forme du bouton "Payer" */
 .btn-order {
   background-color: #088024;
   border: none;
@@ -230,6 +201,7 @@ h1 {
   text-decoration: none;
 }
 
+/* mise en forme du bouton "Paiement" du formulaire */
 .btn-send {
   background-color: #088024;
   color: white;
@@ -242,6 +214,7 @@ h1 {
   color: white;
 }
 
+/* mise en forme du bouton pour vider le panier */
 #erase-cart button {
   background-color: #DC3545;
   color: white;
@@ -263,7 +236,7 @@ h1 {
     margin:1.5em 0;
   }
 
-  .btn-continue {
+  .btn-action {
     width: 100%;
     margin:1.8em 0;
   }

@@ -4,8 +4,8 @@ fetch(api + $_GET('id'))
   // on transfome les données en objets JavaScript
   let furniture = response;
 
-  // on défini sur quel élément HTML on va opérer
-  let show = document.getElementById("product");
+  // élément HTML qui va contenir le produit
+  let product = document.getElementById("product");
 
   // image du produit
   const image = document.createElement("img");
@@ -13,13 +13,13 @@ fetch(api + $_GET('id'))
   image.src = furniture.imageUrl;
   image.alt = furniture.description;
   image.classList.add("product-img");
-  show.appendChild(image);
+  product.appendChild(image);
   
   // on créé un élément "div" pour stocker les informations du produit
   const content = document.createElement("div");
 
   content.id = "product-content";
-  show.appendChild(content);
+  product.appendChild(content);
 
   // nom du produit
   const name = document.createElement("p");
@@ -47,15 +47,18 @@ fetch(api + $_GET('id'))
   varnishLabel.setAttribute("for", "product-varnish");
   varnishLabel.textContent = "Vernis :";
 
+  // on créé le sélecteur pour le choix du vernis
   const select = document.createElement("select");
 
   select.id = "product-varnish";
 
+  // on ajoute une option pour indiquer qu'il faut faire un choix
   let choose = document.createElement("option");
 
   choose.text = "Choisir un vernis";
   select.add(choose, select.choose);
 
+  // on ajoute les options de vernis disponible
   let options = furniture.varnish;
 
   options.forEach(function(element, key) {
@@ -66,6 +69,7 @@ fetch(api + $_GET('id'))
     }          
   })
 
+  // on ajoute un retour à la ligne
   const br = document.createElement("br");
 
   custom.appendChild(varnishLabel);
@@ -78,6 +82,7 @@ fetch(api + $_GET('id'))
   quantityLabel.setAttribute("for", "product-varnish");
   quantityLabel.textContent = ("Quantité :");
 
+  // on créé un input de type nombre pour la quantité de produit(s)
   const input = document.createElement("input");
 
   input.setAttribute("type", "number");
@@ -103,6 +108,7 @@ fetch(api + $_GET('id'))
   // on crée le lien de la redirection au clic du bouton
   const link =  document.createElement("a");
 
+  // on surveille le changement d'état du bouton du choix du vernis
   document.getElementById("product-content").onchange = function() {
     // on récupère le choix de l'utilisateur au changement d'état de l'input "Quantité"
     getQuantity = document.getElementById("product-input").value;
@@ -144,6 +150,7 @@ fetch(api + $_GET('id'))
         }
       }
     } else {
+      // on retire le bouton d'ajout au panier s'il n'y a pas de vernis
       if (document.getElementById('addToCart')) {
         content.removeChild(button);
       }
