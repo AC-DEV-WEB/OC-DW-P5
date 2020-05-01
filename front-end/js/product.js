@@ -1,4 +1,7 @@
-fetch(api + $_GET('id'))
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+fetch(api + urlParams.get('id'))
 .then(response => response.json())
 .then(response => {
   // on transfome les données en objets JavaScript
