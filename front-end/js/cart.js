@@ -210,7 +210,6 @@ if (window.localStorage !== null) {
 
     // on vérifie si le formulaire qui contient le contrôle des expressions réguilères est bien rempli
     $(document).ready(function () {
-      checkForm();
       $('#firstName, #lastName, #address, #city, #email').change(checkForm);
       
       // si tout est bon on peut faire la requête au serveur
