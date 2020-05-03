@@ -211,19 +211,7 @@ if (window.localStorage !== null) {
     // on vérifie si le formulaire qui contient le contrôle des expressions réguilères est bien rempli
     $(document).ready(function () {
       $('#firstName, #lastName, #address, #city, #email').change(checkForm);
-
-      $('#box').change(function(e) {
-        let input = $('#submit');
-
-        if ($(':checked').length == 1 && checkForm()) {
-          // on active l'input de validation du formulaire               
-          input.removeAttr("disabled");
-        } else {
-          // on désactive l'input de validation du formulaire
-          input.attr("disabled", "disabled");
-        }
-      });
-          
+      
       // si tout est bon on peut faire la requête au serveur
       $("#submit").click(function() {
         order();
@@ -232,14 +220,18 @@ if (window.localStorage !== null) {
 
     // contrôle le formulaire
     function checkForm() {
-      if ($("#firstName").val().length > 1 &&
-        $("#lastName").val().length > 1 &&
+      if ($("#firstName").val().length > 2 &&
+        $("#lastName").val().length > 2 &&
         $("#address").val().length > 8 &&
         $("#city").val().length > 2 &&
         $("#email").val().length > 6) {
-        return true;
-      } else {
-        return false;
+        
+        // on désactive le bouton de validation du formulaire
+        $("#submit").prop("disabled", false);
+      }
+      else {
+        // on active le bouton de validation du formulaire
+        $("#submit").prop("disabled", true);
       }
     }
 

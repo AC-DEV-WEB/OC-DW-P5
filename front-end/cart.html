@@ -31,52 +31,48 @@
   <main>
     <div class="container">
       <div class="row">
-        <form>
-          <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header text-center">
-                  <h4 class="modal-title w-100 font-weight-bold">Vos informations</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+        <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Vos informations</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-3">
+                <div class="md-form mb-3">
+                  <i class="fa fa-user prefix grey-text"></i>
+                  <label data-error="wrong" data-success="right" for="firstName">Prénom</label>
+                  <input type="text" id="firstName" class="form-control validate" placeholder="Prénom" pattern="^([a-zA-Z-]|[à-ú]|[À-Ú])+$">
                 </div>
-                <div class="modal-body mx-3">
-                  <div class="md-form mb-3">
-                    <i class="fa fa-user prefix grey-text"></i>
-                    <label data-error="wrong" data-success="right" for="firstName">Prénom</label>
-                    <input type="text" id="firstName" class="form-control validate" placeholder="Prénom" pattern="^([a-zA-Z-]{2,}|[à-ú]|[À-Ú])+$">
-                  </div>
-                  <div class="md-form mb-3">
-                    <i class="fa fa-user-plus prefix grey-text"></i>
-                    <label data-error="wrong" data-success="right" for="lastName">Nom</label>
-                    <input type="text" id="lastName" class="form-control validate" placeholder="Nom" pattern="^([a-zA-Z-]{2,}|[à-ú]|[À-Ú])+$">
-                  </div>
-                  <div class="md-form mb-3">
-                    <i class="fa fa-home prefix grey-text"></i>
-                    <label data-error="wrong" data-success="right" for="address">Adresse</label>
-                    <input type="text" id="address" class="form-control validate" placeholder="137 Avenue du Centre" pattern="[0-9]{1,3}(?:(?:[,. ]?){1}([-a-zA-Zàâäéèêëïîôöùûüç]{2,})+)*">
-                  </div>
-                  <div class="md-form mb-3">
-                    <i class="fa fa-building prefix grey-text"></i>
-                    <label data-error="wrong" data-success="right" for="city">Ville</label>
-                    <input type="text" id="city" class="form-control validate" placeholder="Paris" pattern="^([a-zA-Z]{3,})+(?:[\s-][a-zA-Z]+)*$">
-                  </div>
-                  <div class="md-form mb-4">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                    <label data-error="wrong" data-success="right" for="email">Email</label>
-                    <input type="email" id="email" class="form-control validate" placeholder="prenom.nom@email.fr" pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$">
-                  </div>
-                  <label class="text-center" for="box">Je certifie que les informations ci-dessus sont exactes : </label>
-                  <input class="text-center" type=checkbox id="box">
+                <div class="md-form mb-3">
+                  <i class="fa fa-user-plus prefix grey-text"></i>
+                  <label data-error="wrong" data-success="right" for="lastName">Nom</label>
+                  <input type="text" id="lastName" class="form-control validate" placeholder="Nom" pattern="^([a-zA-Z-]|[à-ú]|[À-Ú])+$">
                 </div>
-                <div class="modal-footer d-flex justify-content-center">
-                  <input type="submit" id="submit" class="btn btn-send" value="Paiement" disabled></input>
+                <div class="md-form mb-3">
+                  <i class="fa fa-home prefix grey-text"></i>
+                  <label data-error="wrong" data-success="right" for="address">Adresse</label>
+                  <input type="text" id="address" class="form-control validate" placeholder="137 Avenue du Centre" pattern="[0-9]{1,3}(?:(?:[,. ]?){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)*">
                 </div>
+                <div class="md-form mb-3">
+                  <i class="fa fa-building prefix grey-text"></i>
+                  <label data-error="wrong" data-success="right" for="city">Ville</label>
+                  <input type="text" id="city" class="form-control validate" placeholder="Paris" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$">
+                </div>
+                <div class="md-form mb-4">
+                  <i class="fa fa-envelope prefix grey-text"></i>
+                  <label data-error="wrong" data-success="right" for="email">Email</label>
+                  <input type="email" id="email" class="form-control validate" placeholder="prenom.nom@email.fr" pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$">
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button id="submit" class="btn btn-send" disabled>Paiement <i class="fa fa-angle-right"></i></button>
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <section>
         <table id="cart" class="table table-hover table-condensed bg-white rounded">
