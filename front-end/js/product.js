@@ -1,3 +1,4 @@
+// on récupère les paramètres de l'URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
