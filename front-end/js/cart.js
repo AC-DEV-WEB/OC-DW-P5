@@ -216,22 +216,32 @@ if (window.localStorage !== null) {
       $("#submit").click(function() {
         order();
       })
+
+      // si la case est coché et que le formulaire est complété on affiche le bouton
+      $('#box').change(function(e) {
+        let button = $('#submit');
+
+        if ($(':checked').length == 1 && checkForm()) {
+          // on active l'input de validation du formulaire               
+          button.removeAttr("disabled");
+        } else {
+          // on désactive l'input de validation du formulaire
+          button.attr("disabled", "disabled");
+        }
+      });
     })
 
     // contrôle le formulaire
     function checkForm() {
-      if ($("#firstName").val().length > 2 &&
-        $("#lastName").val().length > 2 &&
+      if ($("#firstName").val().length > 1 &&
+        $("#lastName").val().length > 1 &&
         $("#address").val().length > 8 &&
-        $("#city").val().length > 2 &&
+        $("#city").val().length > 1 &&
         $("#email").val().length > 6) {
         
-        // on désactive le bouton de validation du formulaire
-        $("#submit").prop("disabled", false);
-      }
-      else {
-        // on active le bouton de validation du formulaire
-        $("#submit").prop("disabled", true);
+        return true;
+      } else {
+        return false;
       }
     }
 
