@@ -214,7 +214,9 @@ if (window.localStorage !== null) {
       
       // si tout est bon on peut faire la requête au serveur
       $("#submit").click(function() {
-        order();
+        if (checkForm()) {
+          order();
+        }
       })
 
       // si la case est coché et que le formulaire est complété on affiche le bouton
@@ -232,17 +234,80 @@ if (window.localStorage !== null) {
     })
 
     // contrôle le formulaire
+    //
+    // retourne true ou false
     function checkForm() {
-      if ($("#firstName").val().length > 1 &&
-        $("#lastName").val().length > 1 &&
-        $("#address").val().length > 8 &&
-        $("#city").val().length > 1 &&
-        $("#email").val().length > 6) {
-        
+      let firstName = $("#modalForm #firstName").val().trim();
+      let lastName = $("#modalForm #lastName").val().trim();
+      let address = $("#modalForm #address").val().trim();
+      let city = $("#modalForm #city").val().trim();
+      let email = $("#modalForm #email").val().trim();
+      let errors = 0;
+
+      // contrôle les expressions réguilères du prénom
+      if(firstName.length > 1) {
+        let pattern = "^([a-zA-Z-]{2,}|[à-ú]|[À-Ú])+$";
+        pattern = new RegExp(pattern);
+
+        if(!pattern.test(firstName)) { 
+          errors++;
+        }
+      } else {
+        errors++;
+      }
+
+      // contrôle les expressions réguilères du nom
+      if(lastName.length > 1) {
+        let pattern = "^([a-zA-Z-]{2,}|[à-ú]|[À-Ú])+$";
+        pattern = new RegExp(pattern);
+
+        if(!pattern.test(lastName)) {
+          errors++;
+        }
+      } else {
+        errors++;
+      }
+
+      // contrôle les expressions réguilères de l'adresse postale
+      if(address.length > 7) {
+        let pattern = "[0-9]{1,3}(?:(?:[,. ]?){1,}([-a-zA-Zàâäéèêëïîôöùûüç]{2,})+)*";
+        pattern = new RegExp(pattern);
+
+        if(!pattern.test(address)) {
+          errors++;
+        }
+      } else {
+        errors++;
+      }
+
+      // contrôle les expressions réguilères de la ville
+      if(city.length > 2) {
+        let pattern = "^([a-zA-Z]{3,})+(?:[\s-][a-zA-Z]+)*$";
+        pattern = new RegExp(pattern);
+
+        if(!pattern.test(city)) {
+          errors++;
+        }
+      } else {
+        errors++;
+      }
+
+      // contrôle les expressions réguilères de l'email
+      if(email.length > 5) {
+        let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+        if(!regex.test(email)) {
+          errors++;
+        }
+      } else {
+        errors++;
+      }
+
+      if(errors === 0) {
         return true;
       } else {
         return false;
-      }
+      }  
     }
 
     // envoie la requête au serveur
