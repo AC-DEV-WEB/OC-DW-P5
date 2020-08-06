@@ -1,11 +1,11 @@
-/* Debug */
+/* debug */
 /* [class*="col-"] {
   border: 2px solid black;
   background-color: sandybrown;
   border-radius: 6px;
 } */
 
-/* police de caractères */
+/* importation des polices d'écriture */
 @font-face {
   font-family: 'Belligerent';
   src: url('../fonts/belligerent.ttf');
